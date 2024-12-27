@@ -55,10 +55,7 @@ class ParentNode(HTMLNode):
         
         inner_html = ""
         for each in self.CHILDREN:
-            inner_html += f"{each.to_html()}"
-
-        if self.PROPS == None:
-            return f"<{self.TAG}>{inner_html}</{self.TAG}>"
+            inner_html += each.to_html()
         
         return f"<{self.TAG}{self.props_to_html()}>{inner_html}</{self.TAG}>"
 

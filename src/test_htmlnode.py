@@ -26,6 +26,7 @@ class TestHTMLNode(unittest.TestCase):
         node6 = HTMLNode(t_h1, v_2, c_2, p_2)
         self.assertEqual(node5, node6)
 
+class TestLeafNode(unittest.TestCase):
     def test_Leq1(self):
         Lnode1 = LeafNode(t_a, v_1)
         Lnode2 = LeafNode(t_a, v_1)
@@ -41,6 +42,7 @@ class TestHTMLNode(unittest.TestCase):
         Lnode6 = LeafNode(t_a, v_2, p_2)
         self.assertEqual(Lnode5, Lnode6)
 
+class TestParentNode(unittest.TestCase):
     def test_Peq1(self):
         Pnode1 = ParentNode(t_a, lnodes, p_1)
         Pnode2 = ParentNode(t_a, lnodes, p_1)
@@ -51,7 +53,7 @@ class TestHTMLNode(unittest.TestCase):
         Pnode4 = ParentNode(t_a, pnodes, p_2)
         self.assertEqual(Pnode3, Pnode4)
 
-    def test_Preq3(self):
+    def test_Peq3(self):
         Pnode5 = ParentNode(t_h1, [])
         Pnode6 = ParentNode(t_h1, [])
         self.assertEqual(Pnode5, Pnode6)
