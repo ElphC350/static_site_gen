@@ -1,3 +1,5 @@
+from vars import *
+
 class HTMLNode:
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.TAG = tag
@@ -39,3 +41,39 @@ class LeafNode(HTMLNode):
         if self.PROPS == None:
             return f"<{self.TAG}>{self.VALUE}</{self.TAG}>"
         return f"<{self.TAG}{self.props_to_html()}>{self.VALUE}</{self.TAG}>"
+    
+class ParentNode(HTMLNode):
+    def __init__(self, tag=None, children=None, props=None):
+        super().__init__(tag, None, children, props)
+        
+    def to_html(self):
+        if self.TAG == None:
+            raise ValueError("ParentNode requires a valid [TAG]")
+        
+        if self.CHILDREN == None or len(self.CHILDREN) == 0:
+            raise ValueError("ParentNode requires as least one(1) child node in [CHILDREN]")
+        
+        inner_html = ""
+        for each in self.CHILDREN:
+            inner_html += f"{each.to_html()}"
+
+        if self.PROPS == None:
+            return f"<{self.TAG}>{inner_html}</{self.TAG}>"
+        
+        return f"<{self.TAG}{self.props_to_html()}>{inner_html}</{self.TAG}>"
+
+
+lnodes = [
+    LeafNode("b", "Bold text"),
+    LeafNode(None, "Normal text"),
+    LeafNode("i", "italic text"),
+    LeafNode(None, "Normal text"),
+]
+
+pnodes = [
+    ParentNode(t_b, lnodes, p_3)
+]
+
+pnodes2 = [
+    ParentNode(t_i, pnodes, p_4)
+]
