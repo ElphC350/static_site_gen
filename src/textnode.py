@@ -48,5 +48,3 @@ tests = [
     TextNode("some basic beach text", TextType.LINK, "https://alink.com"),
     TextNode("some basic beach text", TextType.IMAGE, "https://picture.img")
 ]
-
-print(text_node_to_html_node(tests[0]).to_html())
