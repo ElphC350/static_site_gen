@@ -39,7 +39,8 @@ def text_node_to_html_node(text_node):
             return LeafNode(TextType.IMAGE.value, "", {"src": text_node.url, "alt": text_node.text})
         case _:
             raise Exception("[text_type] must be a valid TextType")
-        
+
+# Pre-written list for testing   
 tests = [
     TextNode("some basic beach text", TextType.NORMAL),
     TextNode("some basic beach text", TextType.BOLD),
