@@ -28,8 +28,8 @@ class TextNode:
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
+# CONVERT TEXT NODE TO LEAF NODE
 def text_node_to_html_node(text_node):
-
     match(text_node.text_type):
         case TextType.NORMAL | TextType.BOLD | TextType.ITALIC | TextType.CODE:
             return LeafNode(text_node.text_type.value, text_node.text)
@@ -39,13 +39,3 @@ def text_node_to_html_node(text_node):
             return LeafNode(TextType.IMAGE.value, "", {"src": text_node.url, "alt": text_node.text})
         case _:
             raise Exception("[text_type] must be a valid TextType")
-
-# Pre-written list for testing   
-tests = [
-    TextNode("some basic beach text", TextType.NORMAL),
-    TextNode("some basic beach text", TextType.BOLD),
-    TextNode("some basic beach text", TextType.ITALIC),
-    TextNode("some basic beach text", TextType.CODE),
-    TextNode("some basic beach text", TextType.LINK, "https://alink.com"),
-    TextNode("some basic beach text", TextType.IMAGE, "https://picture.img")
-]

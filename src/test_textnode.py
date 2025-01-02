@@ -1,6 +1,16 @@
 import unittest
 
-from textnode import TextNode, TextType, tests, text_node_to_html_node
+from textnode import TextNode, TextType, text_node_to_html_node
+
+# Pre-written list for testing   
+tests = [
+    TextNode("some basic beach text", TextType.NORMAL),
+    TextNode("some basic beach text", TextType.BOLD),
+    TextNode("some basic beach text", TextType.ITALIC),
+    TextNode("some basic beach text", TextType.CODE),
+    TextNode("some basic beach text", TextType.LINK, "https://alink.com"),
+    TextNode("some basic beach text", TextType.IMAGE, "https://picture.img")
+]
 
 class TestTextNode(unittest.TestCase):
     def test_eq(self):
