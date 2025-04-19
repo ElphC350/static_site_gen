@@ -2,6 +2,12 @@ from enum import Enum
 from vars import *
 from htmlnode import LeafNode
 
+# Markdown Delimiters
+mdNormal = None
+mdBold = "**"
+mdItalic = "_"
+mdCode = "`"
+
 class TextType(Enum):
     NORMAL = None
     BOLD = "b"
@@ -25,7 +31,9 @@ class TextNode:
             return True
         return False
     
-    def __repr__(self):
+    def __repr__(self): 
+        # EDIT !!!!!!!! self.text_type.value TEMP TO: self.text_type
+        # EDIT !!!!!!!! ADDING "" to self.text AND self.url
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
 # CONVERT TEXT NODE TO LEAF NODE

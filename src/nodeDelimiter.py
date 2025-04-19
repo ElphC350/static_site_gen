@@ -35,6 +35,10 @@ def split_nodes_image(old_nodes):
         node_txt = each.text
         extract_links = extract_markdown_images(node_txt)
 
+        if len(extract_links) == 0:
+            final_nodes.append(each)
+            continue
+
         temp_nodes = []
         for data in extract_links:
             atxt, link = data
@@ -111,3 +115,18 @@ def split_nodes_link(old_nodes):
             final_nodes.append(TextNode(f"{temp_nodes[0]}", TextType.NORMAL))
 
     return final_nodes
+
+# COMBINE ALL SPLITTING FUNCTIONS TO SPLIT AN INPUT WITH MULTIPLE NODE TYPES INTO A LIST OF THEIR RESPECTIVE TEXTNODES
+def text_to_textnode(text):
+    to_node = [TextNode(text, TextType.NORMAL)]
+    node_list= []
+
+    link_split = split_nodes_link(to_node)
+    image_split = split_nodes_image(link_split)
+    bold_split = split_nodes_delimiter(image_split, mdBold, TextType.BOLD)
+    italic_split = split_nodes_delimiter(bold_split, mdItalic, TextType.ITALIC)
+    code_split = split_nodes_delimiter(italic_split, mdCode, TextType.CODE)
+
+    node_list.extend(code_split)
+
+    return node_list

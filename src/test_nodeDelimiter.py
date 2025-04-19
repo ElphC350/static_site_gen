@@ -161,5 +161,9 @@ class TestNodeDelimiter(unittest.TestCase):
              ], new_nodes2
         )
 
+    # ---- Test text_to_textnode function ----
+    def test_text_to_text_node(self):
+        pass
+
 if __name__ == "__main__":
     unittest.main()
