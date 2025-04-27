@@ -130,3 +130,13 @@ def text_to_textnode(text):
     node_list.extend(code_split)
 
     return node_list
+
+# INPUT A RAW MARKDOWN STRING AND RETURN A LIST OF "BLOCK" STRINGS
+def markdown_to_blocks(markdown):
+    split_md = markdown.split('\n\n')
+    strip_mdls = []
+    for ea in split_md:
+        if ea == '':
+            continue
+        strip_mdls.append(ea.strip())
+    return strip_mdls
