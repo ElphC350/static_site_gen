@@ -16,6 +16,14 @@ class TextType(Enum):
     LINK = "a"
     IMAGE = "img"
 
+class BlockType(Enum):
+    P = "paragraph"
+    H = "heading"
+    C = "code"
+    Q = "quote"
+    UOL = "unordered_list"
+    OL = "ordered_list"
+
 class TextNode:
     def __init__(self, text, text_type, url=None):
         self.text = text
@@ -31,9 +39,7 @@ class TextNode:
             return True
         return False
     
-    def __repr__(self): 
-        # EDIT !!!!!!!! self.text_type.value TEMP TO: self.text_type
-        # EDIT !!!!!!!! ADDING "" to self.text AND self.url
+    def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
 # CONVERT TEXT NODE TO LEAF NODE

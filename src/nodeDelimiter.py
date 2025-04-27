@@ -140,3 +140,25 @@ def markdown_to_blocks(markdown):
             continue
         strip_mdls.append(ea.strip())
     return strip_mdls
+
+# TAKES A SINGLE BLOCK OF MARKDOWN TEXT AND RETURNS THE BlockType
+def block_to_block_type(md_txt):
+    split_txt = list(map(lambda x: x.strip(), md_txt.split("\n")))
+
+    # Check if HEADING
+    if check_if_heading(md_txt):
+        return BlockType.H.value
+    # Check if CODE
+    if md_txt.startswith("```") and md_txt.endswith("```"):
+        return BlockType.C.value
+    # Check if QUOTE
+    if all(line.startswith(">") for line in split_txt):
+        return BlockType.Q.value
+    # Check if UOL
+    if all(line.startswith("- ") for line in split_txt):
+        return BlockType.UOL.value
+    # Check if OL
+    if all(split_txt[i].startswith(f"{i+1}. ") for i in range(len(split_txt))):
+        return BlockType.OL.value
+    # Else PARAGRAPH
+    return BlockType.P.value
